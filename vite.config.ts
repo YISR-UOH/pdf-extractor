@@ -12,6 +12,7 @@ export default defineConfig({
     options: { typeAware: true, typeCheck: true },
   },
   build: {
+    sourcemap: false,
     chunkSizeWarningLimit: 1000,
     rolldownOptions: {
       output: {
