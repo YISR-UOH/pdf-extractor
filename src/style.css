@@ -1,0 +1,291 @@
+/* ==========================================================================
+   Ajustes Globales y Variables (Minimalismo Moderno)
+   ========================================================================== */
+:root {
+  --bg-main: #f8fafc; /* Fondo ultra limpio */
+  --bg-panel: #ffffff; /* Fondo de paneles */
+  --text-main: #0f172a; /* Texto principal (Slate 900) */
+  --text-muted: #64748b; /* Texto secundario (Slate 500) */
+  --accent: #2563eb; /* Azul moderno/minimalista */
+  --accent-hover: #1d4ed8;
+  --border: #e2e8f0; /* Líneas muy sutiles */
+  --radius: 12px; /* Bordes suaves y modernos */
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.5;
+  padding: 2rem;
+}
+
+/* ==========================================================================
+   Layout (Diseño en dos columnas asimétricas)
+   ========================================================================== */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .layout {
+    grid-template-columns: 380px 1fr; /* Columna de control fija, resultados amplia */
+  }
+}
+
+/* ==========================================================================
+   Paneles (Tarjetas flotantes sin bordes duros)
+   ========================================================================== */
+.panel {
+  background: var(--bg-panel);
+  padding: 2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: fit-content;
+}
+
+.panel h1,
+.panel h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+/* ==========================================================================
+   Formularios y Elementos de Control
+   ========================================================================== */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.field label {
+  font-size: 0.813rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Estilo unificado para inputs y selects */
+input[type="file"],
+select {
+  font-family: inherit;
+  font-size: 0.938rem;
+  padding: 0.75rem;
+  background-color: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-main);
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  width: 100%;
+}
+
+select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+}
+
+input[type="file"]::file-selector-button {
+  background: var(--border);
+  border: none;
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 0.75rem;
+  font-size: 0.813rem;
+  font-weight: 500;
+  color: var(--text-main);
+  transition: background 0.2s;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: #cbd5e1;
+}
+
+input[type="file"]:focus,
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Botón de Acción Principal (CTA) */
+.cta {
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 0.938rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--text-main); /* Botón negro sobre fondo blanco = ultra minimal */
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    transform 0.1s;
+  text-align: center;
+}
+
+.cta:hover {
+  background-color: #1e293b;
+}
+
+.cta:active {
+  transform: scale(0.98);
+}
+
+.cta:disabled {
+  background-color: var(--border);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Estados y Alertas
+   ========================================================================== */
+.status {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  padding: 0.5rem 0;
+}
+
+.status-ok {
+  color: #16a34a;
+  font-weight: 500;
+}
+.status-error {
+  color: #dc2626;
+  font-weight: 500;
+}
+
+.results-empty {
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: 3rem 0;
+}
+
+/* ==========================================================================
+   Tabla de Resultados (Limpia, sin bordes verticales)
+   ========================================================================== */
+.table-container {
+  max-height: 400px; /* Ajusta esta altura máxima a tu gusto */
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  background-color: var(--bg-panel);
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.938rem;
+}
+
+/* 2. Cabecera fija (Sticky) para que no desaparezca al scrollear */
+.results-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background-color: var(--bg-main); /* Evita que las celdas de abajo se trasluzcan */
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.813rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid var(--border);
+}
+
+.results-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+  color: #334155;
+}
+
+/* Elimina el borde de la última fila para que encaje con el contenedor */
+.results-table tr:last-child td {
+  border-bottom: none;
+}
+
+.results-table tr:hover td {
+  background-color: rgba(241, 245, 249, 0.5);
+}
+
+/* Opcional: Personalizar la barra de scroll para que luzca minimalista */
+.table-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ==========================================================================
+   Tarjetas de Error
+   ========================================================================== */
+.errors {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.error-card {
+  background-color: #fef2f2;
+  border-left: 4px solid #ef4444;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.error-card strong {
+  color: #991b1b;
+  font-size: 0.875rem;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.error-card p {
+  color: #b91c1c;
+  font-size: 0.813rem;
+}
