@@ -7,9 +7,11 @@
     "dev": "vp dev",
     "build": "tsc && vp build",
     "preview": "vp preview",
-    "prepare": "vp config"
+    "prepare": "vp config",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
+    "gh-pages": "^6.3.0",
     "json-as-xlsx": "^2.6.3",
     "pdfjs-dist": "^6.1.200",
     "typescript": "~6.0.2",
